@@ -1,6 +1,7 @@
 package montecarlo.fixedfutures
 
 import java.lang.Math.random
+import java.util.concurrent.ThreadLocalRandom
 
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, ExecutionContext, Future}
@@ -26,7 +27,10 @@ object Runner extends App {
   def isWithinBounds(pair: (Double, Double)) = pair._1 * pair._1 + pair._2 * pair._2 < 1
 
   def piPredictor(numberOfPoints: Int) = {
-    def compute(n: Int) = (1 to n).map(_ => (random(), random())).count(isWithinBounds)
+    def compute(n: Int) = {
+      val rng = ThreadLocalRandom.current()
+      (1 to n).map(_ => (rng.nextDouble(), rng.nextDouble())).count(isWithinBounds)
+    }
     val partsF: Seq[Future[Int]] = (1 to numberOfThreads).map(_ => Future(compute(numberOfPoints / numberOfThreads)))
     partsF.map(x => Await.result(x, Duration.Inf)).sum * 4.0 / numberOfPoints
   }
