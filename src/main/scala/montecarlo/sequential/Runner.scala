@@ -4,6 +4,12 @@ import java.lang.Math.random
 
 object Runner extends App {
 
+  val numberOfPoints = if (args.length > 0) {
+    args(0).toInt
+  } else {
+    3 // Some default
+  }
+
   import org.scalameter._
 
   def isWithinBounds(pair: (Double, Double)) = pair._1 * pair._1 + pair._2 * pair._2 < 1
@@ -20,6 +26,6 @@ object Runner extends App {
 
   def raise10To(exponent: Int) = Math.pow(10, exponent).toInt
 
-  (1 to 3).map(raise10To).map(numberOfPoints => (runExperiment(numberOfPoints), numberOfPoints)).foreach(reporter)
+  (1 to numberOfPoints).map(raise10To).map(numberOfPoints => (runExperiment(numberOfPoints), numberOfPoints)).foreach(reporter)
 
 }
