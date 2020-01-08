@@ -8,6 +8,7 @@ resolvers += "Sonatype OSS Snapshots" at
   "https://oss.sonatype.org/content/repositories/releases"
 
 libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.19"
+libraryDependencies += "org.scala-lang.modules" %% "scala-parallel-collections" % "0.2.0"
 
 testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
 
