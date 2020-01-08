@@ -42,3 +42,37 @@ object Runner extends App {
   (1 to numberOfPoints).map(raise10To).map(numberOfPoints => (runExperiment(numberOfPoints), numberOfPoints)).foreach(reporter)
 
 }
+
+/*
+Future implementation running times on m4large
+
+1 thread - on average, slower than sequential...
+[info] running montecarlo.fixedfutures.Runner 7 1
+It took 0.245685 ms for 10 points
+It took 0.260486 ms for 100 points
+It took 0.366152 ms for 1000 points
+It took 0.799212 ms for 10000 points
+It took 6.76789 ms for 100000 points
+It took 94.150547 ms for 1000000 points
+It took 1090.711087 ms for 10000000 points
+
+2 threads - wayyy slower than sequential... I don't know, it makes no sense...
+[info] running montecarlo.fixedfutures.Runner 7 2
+It took 0.226309 ms for 10 points
+It took 0.192723 ms for 100 points
+It took 0.241403 ms for 1000 points
+It took 2.342587 ms for 10000 points
+It took 22.278208 ms for 100000 points
+It took 229.475656 ms for 1000000 points
+It took 2400.402471 ms for 10000000 points
+
+10 threads - whatt.... this is weird...
+[info] running montecarlo.fixedfutures.Runner 7 10
+It took 0.193699 ms for 10 points
+It took 0.31988 ms for 100 points
+It took 0.62585 ms for 1000 points
+It took 3.040552 ms for 10000 points
+It took 24.241802 ms for 100000 points
+It took 310.822098 ms for 1000000 points / runMain 38s
+It took 3088.061321 ms for 10000000 points
+ */
