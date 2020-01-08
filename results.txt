@@ -1,0 +1,63 @@
+Results on m4xlarge - 4vCPUs, run through SBT
+
+sbt:scala-parallel-programs> show discoveredMainClasses
+[info] Compiling 1 Scala source to /home/ec2-user/scala-parallel-programs/target/scala-2.13/classes ...
+[info] * montecarlo.fixedfutures.Runner
+[info] * montecarlo.parallelcollections.Runner
+[info] * montecarlo.recursivefutures.Runner
+[info] * montecarlo.sequential.Runner
+[success] Total time: 5 s, completed Jan 8, 2020, 5:13:17 PM
+sbt:scala-parallel-programs> runMain montecarlo.sequential.Runner 7
+[warn] Multiple main classes detected.  Run 'show discoveredMainClasses' to see the list
+[info] running montecarlo.sequential.Runner 7
+It took 0.04251 ms for 10 points
+It took 0.077119 ms for 100 points
+It took 0.525563 ms for 1000 points
+It took 1.422072 ms for 10000 points
+It took 10.263711 ms for 100000 points
+It took 72.283413 ms for 1000000 pointse / runMain 14s
+It took 1264.713502 ms for 10000000 points
+[success] Total time: 15 s, completed Jan 8, 2020, 5:13:47 PM
+sbt:scala-parallel-programs> runMain montecarlo.recursivefutures.Runner 7
+[warn] Multiple main classes detected.  Run 'show discoveredMainClasses' to see the list
+[info] running montecarlo.recursivefutures.Runner 7
+It took 0.150299 ms for 10 points
+It took 0.16152 ms for 100 points
+It took 0.255328 ms for 1000 points
+It took 1.00694 ms for 10000 points
+It took 5.502853 ms for 100000 points
+It took 33.066986 ms for 1000000 pointse / runMain 5s
+It took 344.829156 ms for 10000000 points
+[success] Total time: 6 s, completed Jan 8, 2020, 5:15:54 PM
+sbt:scala-parallel-programs> runMain montecarlo.parallelcollections.Runner 7
+[warn] Multiple main classes detected.  Run 'show discoveredMainClasses' to see the list
+[info] running montecarlo.parallelcollections.Runner 7
+It took 1.477471 ms for 10 points
+It took 1.031949 ms for 100 points
+It took 1.163951 ms for 1000 points
+It took 1.426013 ms for 10000 points
+It took 2.518664 ms for 100000 points
+It took 28.641262 ms for 1000000 points
+It took 699.942731 ms for 10000000 points/ runMain 10s
+[success] Total time: 11 s, completed Jan 8, 2020, 5:16:21 PM
+sbt:scala-parallel-programs> runMain montecarlo.fixedfutures.Runner 7 10
+[warn] Multiple main classes detected.  Run 'show discoveredMainClasses' to see the list
+[info] running montecarlo.fixedfutures.Runner 7 10
+It took 0.178819 ms for 10 points
+It took 0.183881 ms for 100 points
+It took 0.206841 ms for 1000 points
+It took 0.731828 ms for 10000 points
+It took 2.02901 ms for 100000 points
+It took 16.685151 ms for 1000000 pointse / runMain 22s
+It took 250.324772 ms for 10000000 points
+[success] Total time: 23 s, completed Jan 8, 2020, 5:17:15 PM
+sbt:scala-parallel-programs> runMain montecarlo.fixedfutures.Runner 7 100
+[warn] Multiple main classes detected.  Run 'show discoveredMainClasses' to see the list
+[info] running montecarlo.fixedfutures.Runner 7 100
+It took 0.3998 ms for 10 points
+It took 0.78814 ms for 100 points
+It took 0.344277 ms for 1000 points
+It took 0.739339 ms for 10000 points
+It took 4.50355 ms for 100000 points
+It took 19.017387 ms for 1000000 points
+It took 152.119834 ms for 10000000 points/ runMain 2s
