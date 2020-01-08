@@ -1,6 +1,8 @@
 package montecarlo.parallelcollections
 
 import java.lang.Math.random
+import java.util.concurrent.ThreadLocalRandom
+
 import scala.collection.parallel.CollectionConverters._
 
 object Runner extends App {
@@ -16,7 +18,8 @@ object Runner extends App {
   def isWithinBounds(pair: (Double, Double)) = pair._1 * pair._1 + pair._2 * pair._2 < 1
 
   def piPredictor(numberOfPoints: Int) = {
-    (1 to numberOfPoints).par.map(_ => (random(), random())).count(isWithinBounds) * 4.0 / numberOfPoints
+    val rng = ThreadLocalRandom.current()
+    (1 to numberOfPoints).par.map(_ => (rng.nextDouble(), rng.nextDouble())).count(isWithinBounds) * 4.0 / numberOfPoints
   }
 
   def runExperiment(numberOfPoints: Int) = withWarmer(new Warmer.Default) measure {
